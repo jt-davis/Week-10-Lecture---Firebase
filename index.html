@@ -48,8 +48,8 @@
 			async function getRestaurants(db) {
 				const restaurantsCol = collection(db, "Restaurants");
 				const restaurantsSnapshot = await getDocs(restaurantsCol);
-				const restaurantsList = restaurantsSnapshot.docs.map((doc) =>
-					doc.data()
+				const restaurantsList = restaurantsSnapshot.docs.map(
+					(doc) => doc
 				);
 				return restaurantsList;
 			}
@@ -62,8 +62,8 @@
 				let city = document.createElement("span");
 
 				li.setAttribute("data-id", doc.id);
-				name.textContent = doc.name;
-				city.textContent = doc.city;
+				name.textContent = doc.data().name;
+				city.textContent = doc.data().city;
 
 				li.appendChild(name);
 				li.appendChild(city);
