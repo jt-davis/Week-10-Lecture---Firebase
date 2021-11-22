@@ -58,24 +58,37 @@
 
 			function renderRestaurant(doc) {
 				let li = document.createElement("li");
-				let name = document.createElement("span");
+				let coffeeshop = document.createElement("span");
 				let city = document.createElement("span");
 
 				li.setAttribute("data-id", doc.id);
-				name.textContent = doc.data().name;
-				city.textContent = doc.data().city;
+				coffeeshop.textContent = doc.coffeeshop;
+				city.textContent = doc.city;
 
-				li.appendChild(name);
+				li.appendChild(coffeeshop);
 				li.appendChild(city);
-				console.log(doc.id);
+				console.log(doc.coffeeshop);
 				restaurantsList.appendChild(li);
 			}
-
+			// console.log(
+			// 	getRestaurants(db).then((snapshot) => {
+			// 		snapshot.forEach((doc) => {
+			// 			console.log(doc.data());
+			// 		});
+			// 	})
+			// );
 			const restaurants = getRestaurants(db).then((snapshot) => {
 				snapshot.forEach((doc) => {
-					renderRestaurant(doc);
+					renderRestaurant(doc.data());
 				});
 			});
+			// const restaurants = getDocs(collection(db, "Restaurants")).then(
+			// 	(snapshot) => {
+			// 		snapshot.forEach((doc) => {
+			// 			renderRestaurant(doc);
+			// 		});
+			// 	}
+			// );
 		</script>
 		<script src="app.js"></script>
 	</body>
